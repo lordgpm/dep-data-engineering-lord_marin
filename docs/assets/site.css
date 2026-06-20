@@ -692,6 +692,10 @@ h3 {
     background 0.25s ease;
 }
 
+.team-group {
+  overflow: visible;
+}
+
 .feature-card::after,
 .timeline-item::after,
 .team-group::after {
@@ -945,6 +949,36 @@ h3 {
 .team-group span,
 .team-group small {
   display: block;
+}
+
+.team-group a {
+  color: inherit;
+  position: relative;
+  text-decoration: none;
+}
+
+.team-tooltip {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  bottom: calc(100% + 8px);
+  color: var(--sub);
+  font-size: 12px;
+  left: 0;
+  line-height: 1.4;
+  opacity: 0;
+  padding: 6px 10px;
+  pointer-events: none;
+  position: absolute;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.team-group a:hover .team-tooltip {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .team-group span {
