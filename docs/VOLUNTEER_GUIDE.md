@@ -53,6 +53,25 @@ Paired with stuck Builders. Limited slots. Only for Builders who are blocked, no
 
 ---
 
+## Review Escalation Policy
+
+A builder should never be blocked on a milestone for more than 7 days due to reviewer unavailability.
+
+| Day | Who acts | Action |
+|-----|----------|--------|
+| Day 1–5 | Milestone Reviewer | Review the submission and apply `passed` or `needs-improvement` |
+| Day 5 | Community Moderator | Ping the assigned reviewer in the volunteer channel if no verdict yet |
+| Day 7 | System Lead | Step in directly — either review it or reassign to another available reviewer |
+
+**If you cannot review a submission you've been assigned:**
+
+- Post in the volunteer channel as early as possible so someone else can pick it up
+- Do not leave it silent — a delayed handoff is better than a missed deadline
+
+**For builders:** If your submission has been waiting more than 7 days with no verdict, post in the Discord community channel and tag your moderator.
+
+---
+
 ## What Volunteers Do NOT Do
 
 - Run live lectures or synchronous sessions
