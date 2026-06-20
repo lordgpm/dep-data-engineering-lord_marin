@@ -50,4 +50,4 @@ If your project question does not naturally call for a model, take **Path B**. D
 - [ ] Path B: Segmentation notebook + KPI definitions + 1-page stakeholder brief
 - [ ] `requirements.txt` present and up to date
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)

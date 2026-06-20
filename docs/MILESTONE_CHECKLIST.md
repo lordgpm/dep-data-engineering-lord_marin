@@ -14,7 +14,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] README started in your own words
 - [ ] GitHub repo is public with at least one commit
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -28,7 +28,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] First pull path confirmed and documented
 - [ ] README data section complete
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -41,7 +41,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] Source URL and date recorded alongside the raw file
 - [ ] Script (or documented manual process) is repeatable
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -56,7 +56,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] Validation checks added to the transform flow
 - [ ] Transform script produces the same output on every run
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -68,7 +68,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] One inference section that avoids overclaiming causality
 - [ ] Notebook is organized and annotated with markdown
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -97,7 +97,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] `requirements.txt` present and up to date
 - [ ] No unnecessary files committed
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -110,7 +110,7 @@ Use this to track your progress. Milestone reviewers also use this when evaluati
 - [ ] Final README covers: problem, data, pipeline, analysis, dashboard, how to run
 - [ ] Short presentation or demo script prepared (5–10 minutes)
 
-**Submission:** [Insert form link]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 

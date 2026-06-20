@@ -51,7 +51,7 @@ For examples and prompt patterns, see [Using AI in the DEP Open Track](../docs/A
 - [ ] At least one potential data source is linked
 - [ ] README started in learner's own words
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 
 ---
 
@@ -66,4 +66,4 @@ For examples and prompt patterns, see [Using AI in the DEP Open Track](../docs/A
 - [ ] README data section complete with source URL, format, and coverage
 - [ ] First pull path documented
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)

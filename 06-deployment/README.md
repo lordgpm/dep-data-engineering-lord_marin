@@ -41,4 +41,4 @@ By the end of Week 24, you will have:
 - [ ] All links working, no missing files, no broken notebook outputs
 - [ ] Short presentation or demo script prepared
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)

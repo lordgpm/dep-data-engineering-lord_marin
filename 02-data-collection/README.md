@@ -37,4 +37,4 @@ By the end of Week 6, you will have:
 - [ ] Raw file saved in `/data/raw/` with source URL and date recorded
 - [ ] All 3 ingestion paths (API / scraping / manual) are valid — deliverable format is the same
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)

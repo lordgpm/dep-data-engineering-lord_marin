@@ -88,7 +88,7 @@ Full checklist: [docs/MILESTONE_CHECKLIST.md](docs/MILESTONE_CHECKLIST.md)
 
 ## Getting Started (Participants)
 
-1. **Join the community** — [Discord link here]
+1. **Join the community** — [Join the DEP Discord](https://discord.com/invite/buDgydz7J9)
 2. **Set up your project repo** — copy the [DEP Starter Kit](cohorts/starter-kit/) scaffold into your own GitHub repo
 3. **Start Phase 1** — go to [01-foundations/](01-foundations/) and begin Week 1
 

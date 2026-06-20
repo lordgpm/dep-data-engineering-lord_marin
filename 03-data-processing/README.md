@@ -44,4 +44,4 @@ By the end of Week 12, you will have:
 - [ ] Validation checks added to the transformation flow
 - [ ] Transform script is reproducible — same output on every run
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)

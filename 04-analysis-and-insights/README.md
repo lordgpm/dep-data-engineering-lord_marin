@@ -41,4 +41,4 @@ By the end of Week 16, you will have:
 - [ ] One inference section that avoids overclaiming causality
 - [ ] Notebook is organized and annotated
 
-**Submission:** [Insert form link here]
+**Submission:** [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
