@@ -29,7 +29,7 @@ You have two options:
 1. Fork this repo to your account
 2. In your fork, delete everything outside of `cohorts/starter-kit/` and restructure the contents as your root
 
-> Your repo must be **public** at all times so reviewers and the auto-checker can access it.
+> Your repo must be **public** at all times so reviewers and the auto-checker can access it. Do not make it private at any point during the program — even temporarily. If your repo is private when you submit, the auto-check will fail and your submission will not be reviewed.
 
 ---
 
