@@ -22,7 +22,6 @@
 - Starter Kit: [cohorts/starter-kit/](../starter-kit/)
 - Submission Form: [Open a Milestone Issue](https://github.com/dataengineeringpilipinas/dep-data-engineering-open-track/issues/new/choose)
 - Discord / Community: [Join the DEP Discord](https://discord.com/invite/buDgydz7J9)
-- Builder Tracker: [Insert link]
 
 ---
 
