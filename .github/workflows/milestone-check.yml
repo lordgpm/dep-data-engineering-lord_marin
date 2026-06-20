@@ -44,8 +44,89 @@ jobs:
             core.setOutput('repo_url', repoUrl);
             core.setOutput('commit_hash', commitHash);
 
+      - name: Check prerequisite milestone
+        id: gate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const MILESTONES = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
+            const milestone = '${{ steps.parse.outputs.milestone }}';
+            const repoUrl   = '${{ steps.parse.outputs.repo_url }}';
+            const idx = MILESTONES.indexOf(milestone);
+
+            // M0 has no prerequisite
+            if (idx <= 0) {
+              core.setOutput('gate_ok', 'true');
+              return;
+            }
+
+            const prevMilestone = MILESTONES[idx - 1];
+            core.setOutput('prev_milestone', prevMilestone);
+
+            // Find all passed issues for the previous milestone
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: `milestone-submission,${prevMilestone},passed`,
+              state: 'all'
+            });
+
+            const found = issues.some(issue => issue.body && issue.body.includes(repoUrl));
+            core.setOutput('gate_ok', found ? 'true' : 'false');
+
+      - name: Block if prerequisite not met
+        if: steps.gate.outputs.gate_ok == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const milestone     = '${{ steps.parse.outputs.milestone }}';
+            const prevMilestone = '${{ steps.gate.outputs.prev_milestone }}';
+
+            const body = [
+              `## Auto-Check Results — ${milestone}`,
+              '',
+              `> ⛔ **Gate blocked.** Your ${prevMilestone} submission has not been marked \`passed\` yet.`,
+              '',
+              `You must complete and pass **${prevMilestone}** before submitting **${milestone}**. This is a program requirement — milestones must be completed in order.`,
+              '',
+              `**What to do:**`,
+              `1. Check your ${prevMilestone} submission issue to see if it has a \`passed\` label`,
+              `2. If it shows \`needs-improvement\`, address the reviewer's comment and resubmit`,
+              `3. If you haven't submitted ${prevMilestone} yet, do that first`,
+              `4. Once ${prevMilestone} is marked \`passed\`, close this issue and open a new ${milestone} submission`,
+              '',
+              `---`,
+              `_Auto-Check by DEP submission bot_`
+            ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body
+            });
+
+            // Remove auto-check-pending and close the issue
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                name: 'auto-check-pending'
+              });
+            } catch (_) {}
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              state: 'closed',
+              state_reason: 'not_planned'
+            });
+
       - name: Clone builder repo at commit
         id: clone
+        if: steps.gate.outputs.gate_ok == 'true'
         run: |
           REPO="${{ steps.parse.outputs.repo_url }}"
           HASH="${{ steps.parse.outputs.commit_hash }}"
@@ -74,7 +155,7 @@ jobs:
 
       - name: Run milestone checks
         id: checks
-        if: steps.clone.outputs.clone_ok == 'true'
+        if: steps.gate.outputs.gate_ok == 'true' && steps.clone.outputs.clone_ok == 'true'
         run: |
           python .github/scripts/milestone_check.py \
             --milestone "${{ steps.parse.outputs.milestone }}" \
@@ -82,6 +163,7 @@ jobs:
             --output-file check_result.json
 
       - name: Post auto-check comment
+        if: steps.gate.outputs.gate_ok == 'true'
         uses: actions/github-script@v7
         with:
           script: |
