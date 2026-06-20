@@ -4,9 +4,14 @@ All notable curriculum-documentation changes in this repo should be recorded her
 
 ## Unreleased
 
+## [0.0.6] - Organizing Team update 
+
 ### Changed
 
 - Updated the onboarding site registration CTAs to reflect that registration is closed, including the navbar button and hero button, plus a disabled/closed visual treatment in [docs/index.html](docs/index.html) and [docs/assets/site.css](docs/assets/site.css).
+- Aligned the team section in [docs/index.html](docs/index.html) added Myk Ogbinar (Founder, DEP), Simonee Ezequiel (Communications), and Bea Lambitco (Content Curator). Renamed groups to Content Curators, Squad Team, and Mentors Team. Corrected role titles across Ops, Communications, Squad, and Mentors. Rebuilt the Admissions panel to match the documented crossover (Katherine Bulac, James David Bradly Carballo, Anam Iqbal). Removed Vanie Bermudez and Renan Matthew Fajardo.
+- Further team adjustments: added Jomai Hizon and Kim Audrey Magan to Ops; removed Yui Otsuka and Renzi Vidal from Mentors Team; swapped Zierd Ethan for Vanie Bermudez in Squad Team; renamed Community to Moderators and added Renan Matthew Fajardo.
+- Added Zierd Ethan and Andrei Marcus to Curriculum; removed Simonee Ezequiel from Communications.
 
 ## [0.0.5] - Site General Improvements
 
