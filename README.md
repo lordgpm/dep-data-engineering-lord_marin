@@ -14,8 +14,20 @@ Which cities in Metro Manila exhibit the highest volume of digital connection-se
 * Commercial Developers & Community Builders: Co-working spaces, board game cafes, and lifestyle brands can use this to identify untapped local demand for spaces that facilitate casual, platonic human interaction ("friendliest cities").
 
 ## Data Sources
-1. **Primary Data:** * **Reddit API (via PRAW):** Historical and streaming post data from local subreddits (e.g., `r/phr4r`). 
+1. **Primary Data:** * **Reddit API (via PRAW):** Historical and streaming post data from local subreddits. 
+   * **Location/URL:** https://www.reddit.com/dev/api/
+   * *Coverage & Scope (Subreddit Targets):*
+      * [*phr4r_2*](https://www.reddit.com/r/phr4r_2/) for category of *All*
+      * [*phr4friends*](https://www.reddit.com/r/PhR4Friends/) for category of *Platonic*
+      * [*phr4dating*](https://www.reddit.com/r/PhR4Dating/) for category of *Romantic*
+      * [*dirtyphpr4r*](https://www.reddit.com/r/dirtyphpr4r/) for category of *Sexual*
    * *Extracted fields:* Timestamps (UTC), Title (for demographic/intent parsing), and Post Body.
-2. **Supplementary Data (Optional Context):**
-   * **Open-Meteo API / PAGASA:** Historical weather data to correlate rain/typhoons with post volume.
-   * **PH Holiday Calendar:** To flag long weekends or holidays (e.g., Valentine's Day, Christmas).
+   * *Timeframe:*  The project will only get properly-formatted r4r posts as data from the last year (July 2025 to July 2026)
+   * **Limitations:** City-level data relies on voluntary location tags in post titles. Additionally, the official Reddit API caps listing endpoints to the 1,000 most recent posts.
+2. **Backup Data:** 
+   * [**PullPush API**](https://pullpush.io/) for public API of archived Reddit posts
+   * [**Arctic Shift**](https://arctic-shift.photon-reddit.com/) public API and download tools for archived Reddit posts.
+   * **Role:** Used if PRAW API access is rate-limited, revoked, or fails to fetch older historical posts.
+3. **Supplementary Data (Optional Context):**
+   * [**Openweather API:**](https://openweathermap.org/api) Historical weather data to correlate rain/typhoons with post volume.
+   * [**PH Holiday Calendar:**](https://www.officialgazette.gov.ph/nationwide-holidays/) To flag long weekends or holidays (e.g., Valentine's Day, Christmas).
