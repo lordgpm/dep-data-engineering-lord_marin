@@ -32,9 +32,38 @@ Which cities in Metro Manila exhibit the highest volume of digital connection-se
    * [**Openweather API:**](https://openweathermap.org/api) Historical weather data to correlate rain/typhoons with post volume.
    * [**PH Holiday Calendar:**](https://www.officialgazette.gov.ph/nationwide-holidays/) To flag long weekends or holidays (e.g., Valentine's Day, Christmas).
 
-## Week 5 & 6 - API Fundamentals & Request Handling
+## Week 5 - API Fundamentals & Request Handling
 Completed enhancements to the data ingestion pipeline:
 - Updated scripts/ingest.py to collect from all 4 subreddits (phr4r_2, phr4friends, phr4dating, dirtyphpr4r)
 - Implemented proper error handling and rate limiting
 - Added pagination support for retrieving larger datasets
-- Ensured raw data is saved as JSON files consistently to /data/raw/
+- Ensured raw data is saved consistently to /data/raw/
+
+## Setup Instructions
+To set up the data ingestion environment:
+
+1. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Configure Reddit API credentials**:
+   - Copy the example environment file: `cp .env.example .env`
+   - Fill in your Reddit API credentials in the `.env` file:
+     - `REDDIT_CLIENT_ID`: Your Reddit app client ID
+     - `REDDIT_CLIENT_SECRET`: Your Reddit app client secret
+     - `REDDIT_USER_AGENT`: A unique user agent string for your app
+
+## Running the Ingestion Script
+To run the data ingestion script:
+
+```bash
+python scripts/ingest.py
+```
+
+This will:
+- Fetch posts from all 4 subreddits (phr4r_2, phr4friends, phr4dating, dirtyphpr4r)
+- Save individual subreddit data to `/data/raw/`
+- Create a combined dataset in `/data/raw/`
+- Display progress information during execution
+
