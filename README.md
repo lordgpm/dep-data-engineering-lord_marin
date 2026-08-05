@@ -31,3 +31,10 @@ Which cities in Metro Manila exhibit the highest volume of digital connection-se
 3. **Supplementary Data (Optional Context):**
    * [**Openweather API:**](https://openweathermap.org/api) Historical weather data to correlate rain/typhoons with post volume.
    * [**PH Holiday Calendar:**](https://www.officialgazette.gov.ph/nationwide-holidays/) To flag long weekends or holidays (e.g., Valentine's Day, Christmas).
+
+## Week 5 & 6 - API Fundamentals & Request Handling
+Completed enhancements to the data ingestion pipeline:
+- Updated scripts/ingest.py to collect from all 4 subreddits (phr4r_2, phr4friends, phr4dating, dirtyphpr4r)
+- Implemented proper error handling and rate limiting
+- Added pagination support for retrieving larger datasets
+- Ensured raw data is saved as JSON files consistently to /data/raw/
