@@ -1,7 +1,11 @@
 .DS_Store
+venv/
 __pycache__/
 *.pyc
 .env
+
+data/raw/*.jsonl
+data/processed/posts_clean.csv
 
 reference-docs/
 AGENTS.md
