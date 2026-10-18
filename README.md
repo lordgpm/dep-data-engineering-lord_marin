@@ -101,6 +101,31 @@ volume by day of week, Metro Manila cities ranked by volume with intent mix,
 intent mix by hour, seeker gender split by intent, monthly trend, and the age
 profile of connection seekers.
 
+## Week 13-16 - Analysis & Insights (M4)
+
+The analysis is in `notebooks/04_insights.ipynb`. Charts are saved in `output/figures/`.
+
+**Added in M4 (I missed these in M3):**
+- `data/reference/metro_manila_population.csv`: 2024 POPCEN population for the 16 NCR cities, with PSGC codes, from the [PSA PSGC cities table](https://psa.gov.ph/classification/psgc/cities). Used for the per-capita numbers. Pateros is left out (a municipality, not in that table, and only 3 posts).
+- `data/reference/manila_daily_weather.csv`, pulled by `scripts/fetch_weather.py` from Open-Meteo (no API key). Used for the rain question.
+
+**Analysis window:** Aug 2025 to Aug 2026. The archive is too thin before Aug 2025 to compare.
+
+**Findings:**
+- Posting peaks late at night. About 27% of posts are between 10 PM and 2 AM.
+- Makati has the most posts per capita. Pasay leans toward sexual posts.
+- Rainy days have slightly fewer posts (about 530 vs 558 a day). Weekends have more (about 582 vs 517).
+- Temperature shows no clear effect once you compare days within the same month.
+- Men make up about 62% of posts. Women get more upvotes in every category and more comments where comments can be compared.
+
+**Re-running:**
+
+```bash
+pip install -r requirements.txt
+python3 scripts/fetch_weather.py
+jupyter nbconvert --to notebook --execute --inplace notebooks/04_insights.ipynb
+```
+
 ## Setup Instructions
 To set up the data ingestion environment:
 
