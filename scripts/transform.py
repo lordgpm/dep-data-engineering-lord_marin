@@ -17,6 +17,7 @@ PROCESSED_DATA_DIR = os.path.join(BASE_DIR, "..", "data", "processed")
 REFERENCE_DIR = os.path.join(BASE_DIR, "..", "data", "reference")
 GAZETTEER_CSV = os.path.join(REFERENCE_DIR, "metro_manila_gazetteer.csv")
 CLEAN_CSV = os.path.join(PROCESSED_DATA_DIR, "posts_clean.csv")
+FULL_CSV = os.path.join(PROCESSED_DATA_DIR, "posts_clean_full.csv")
 CLEANING_LOG = os.path.join(PROCESSED_DATA_DIR, "cleaning_log.md")
 
 MANILA = timezone(timedelta(hours=8))
@@ -33,6 +34,14 @@ AGE_RE = re.compile(r"(?<!\d)(\d{2})(?!\d)")
 TAG_RE = re.compile(r"\[?\s*([A-Za-z]{1,3})\s*4\s*([A-Za-z]{1,3})\s*\]?", re.IGNORECASE)
 
 OUTPUT_COLUMNS = [
+    "post_id", "subreddit", "category",
+    "created_utc", "created_datetime_manila", "date_manila", "hour_manila",
+    "day_of_week", "year", "month", "score", "num_comments",
+    "seeker_age", "seeker_gender", "target_gender", "intent_tag", "city",
+]
+
+# kept locally for future text work; never commit or share this file
+FULL_COLUMNS = [
     "post_id", "title", "selftext", "author", "subreddit", "category",
     "created_utc", "created_datetime_manila", "date_manila", "hour_manila",
     "day_of_week", "year", "month", "score", "num_comments",
@@ -57,7 +66,10 @@ def build_city_matcher(gazetteer):
 
 
 def extract_city(text, matcher, gazetteer):
-    m = matcher.search(text.lower())
+    # "Metro Manila" names the region, not a city. Drop it before matching so
+    # region-wide posts are not counted as Manila.
+    text = re.sub(r"\bmetro\s+manila\b", " ", text.lower())
+    m = matcher.search(text)
     return gazetteer[m.group(1)] if m else ""
 
 
@@ -206,11 +218,11 @@ def clean(raw_records, city_matcher, gazetteer):
 
 def write_csv(rows):
     os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
-    with open(CLEAN_CSV, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=OUTPUT_COLUMNS)
-        writer.writeheader()
-        for row in rows:
-            writer.writerow(row)
+    for path, columns in ((CLEAN_CSV, OUTPUT_COLUMNS), (FULL_CSV, FULL_COLUMNS)):
+        with open(path, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=columns, extrasaction="ignore")
+            writer.writeheader()
+            writer.writerows(rows)
 
 
 def validate(rows, gazetteer):
@@ -249,7 +261,9 @@ def write_log(load_stats, clean_stats, checks, rows):
         f.write("8. Map subreddit to category (all/platonic/romantic/sexual).\n")
         f.write("9. Gazetteer-based geoparsing: match city aliases from data/reference/metro_manila_gazetteer.csv\n")
         f.write("   (canonical names from the PSGC 2Q 2026 publication) against title + selftext with\n")
-        f.write("   word-boundary regex. Blank when no city is matched.\n\n")
+        f.write("   word-boundary regex. 'Metro Manila' is treated as a region label and removed before\n")
+        f.write("   matching so it does not resolve to Manila. The first remaining city mention wins;\n")
+        f.write("   posts naming several cities get one city, not a multi-label. Blank when no city matches.\n\n")
         f.write("## Row counts\n\n")
         f.write("| Step | Dropped | Remaining |\n|---|---|---|\n")
         remaining = clean_stats["input"]
@@ -268,6 +282,8 @@ def write_log(load_stats, clean_stats, checks, rows):
         f.write("Rows with a matched city: {} ({:.1f}%)\n\n".format(
             len(rows) - clean_stats["no_city"],
             100.0 * (len(rows) - clean_stats["no_city"]) / len(rows) if rows else 0.0))
+        f.write("Outputs: posts_clean.csv drops title, selftext, and author for safe sharing.\n")
+        f.write("posts_clean_full.csv keeps them locally and must stay out of git.\n\n")
         f.write("## Validation checks\n\n")
         f.write("| Check | Result |\n|---|---|\n")
         for name, ok in checks:
@@ -289,6 +305,7 @@ def main():
     for name, ok in checks:
         print("  {}: {}".format("PASS" if ok else "FAIL", name))
     print("Wrote {}".format(os.path.relpath(CLEAN_CSV, BASE_DIR)))
+    print("Wrote {}".format(os.path.relpath(FULL_CSV, BASE_DIR)))
     print("Wrote {}".format(os.path.relpath(CLEANING_LOG, BASE_DIR)))
     if failed:
         raise SystemExit("Validation failed: {}".format(", ".join(failed)))
