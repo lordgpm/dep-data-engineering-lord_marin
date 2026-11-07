@@ -70,8 +70,8 @@ analysis-ready dataset:
 Outputs:
 - `data/processed/posts_clean.csv` — the shareable clean dataset (211,528 rows).
   It drops `title`, `selftext`, and `author` so it does not expose Reddit users
-  or post text. Download the anonymized copy from the project Google Drive
-  folder (link shared with the cohort).
+  or post text. Download the anonymized copy from Google Drive:
+  https://drive.google.com/file/d/1TviGW2b6Kzbss_e4mwB3Ns4kdiNi4vE8/view?usp=drive_link
 - `data/processed/posts_clean_full.csv` — the same rows with `title`, `selftext`,
   and `author`. This stays local and is gitignored; do not share or commit it.
 - `data/processed/cleaning_log.md` — every cleaning decision, row counts per
@@ -121,8 +121,8 @@ The analysis is in `notebooks/04_insights.ipynb`. Charts are saved in `output/fi
 
 **Re-running:**
 
-The notebook needs `data/processed/posts_clean.csv`, which is not tracked in git.
-Download the anonymized copy from the project Drive folder and put it in
+The M4 notebook needs `data/processed/posts_clean.csv`, which is not tracked in
+git. Download the anonymized copy from the Drive link above and put it in
 `data/processed/` first. If you want to rebuild it from raw exports instead, put
 the raw JSON/JSONL files in `data/raw/` and run `python3 scripts/transform.py`.
 
@@ -143,14 +143,28 @@ not both; for example, "Makati or Taguig" is tagged Makati.
 
 ## Phase 5 - Path B: Advanced EDA & KPIs (M5)
 
-I am taking Path B. The project question is descriptive, so the next phase will
-extend the city and intent analysis rather than force a predictive model:
+I am taking Path B. The project question is descriptive, so this phase extends
+the city and intent analysis instead of forcing a predictive model.
 
-- Segment posts by city, intent, and time of day.
-- Define a small KPI set: posts per 100,000 residents, share of posts between
-  10 PM and 2 AM, intent mix by city, and engagement rate.
-- Turn the M4 charts into a short stakeholder brief for community builders and
-  LGU health teams.
+- `notebooks/05_segments.ipynb` compares cities, age bands, and months. It saves
+  `fig6`-`fig8` in `output/figures/` and the KPI tables in `output/tables/`
+  (local only).
+- `reports/m5_stakeholder_brief.md` is the one-page brief for community builders
+  and LGU health teams.
+
+**KPIs:** posts per 100,000 residents, late-night share (10 PM to 2 AM), platonic
+share, and sexual share. The definitions and caveats are in the notebook.
+
+**Run after the M4 notebook:**
+
+```bash
+jupyter nbconvert --to notebook --execute --inplace notebooks/05_segments.ipynb
+```
+
+**Main findings:** Makati has the highest per-capita volume; Pasay has the
+highest sexual share; Muntinlupa and Taguig have the highest platonic shares.
+Under-30 posters lean platonic, while 35+ leans sexual. Late-night share is stable
+at about 26-28%.
 
 ## Setup Instructions
 To set up the data ingestion environment:
