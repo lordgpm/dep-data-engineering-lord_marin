@@ -23,7 +23,7 @@ Which cities in Metro Manila exhibit the highest volume of digital connection-se
       * [*dirtyphpr4r*](https://www.reddit.com/r/dirtyphpr4r/) for category of *Sexual*
    * *Extracted fields:* Timestamps (UTC), Title (for demographic/intent parsing), and Post Body.
    * *Timeframe:*  The project will only get properly-formatted r4r posts as data from the last year (July 2025 to July 2026)
-   * **Limitations:** City-level data relies on voluntary location tags in post titles. Additionally, the official Reddit API caps listing endpoints to the 1,000 most recent posts.
+   * **Limitations:** City-level data relies on voluntary location mentions in titles or post bodies; only about 36% of posts name a city. The official Reddit API also caps listing endpoints to the 1,000 most recent posts.
 2. **Backup Data:** 
    * [**PullPush API**](https://pullpush.io/) for public API of archived Reddit posts
    * [**Arctic Shift**](https://arctic-shift.photon-reddit.com/) public API and download tools for archived Reddit posts.
@@ -147,13 +147,16 @@ I am taking Path B. The project question is descriptive, so this phase extends
 the city and intent analysis instead of forcing a predictive model.
 
 - `notebooks/05_segments.ipynb` compares cities, age bands, and months. It saves
-  `fig6`-`fig8` in `output/figures/` and the KPI tables in `output/tables/`
+  `fig6`-`fig9` in `output/figures/` and the KPI tables in `output/tables/`
   (local only).
 - `reports/m5_stakeholder_brief.md` is the one-page brief for community builders
   and LGU health teams.
 
 **KPIs:** posts per 100,000 residents, late-night share (10 PM to 2 AM), platonic
-share, and sexual share. The definitions and caveats are in the notebook.
+posts per 100,000, and sexual posts per 100,000. The city table also shows general
+r4r and romantic rates. The four categories are subreddits, not a text-level
+intent classifier, so I compare them separately instead of pooling them into one
+intent share. Definitions and caveats are in the notebook.
 
 **Run after the M4 notebook:**
 
@@ -161,10 +164,14 @@ share, and sexual share. The definitions and caveats are in the notebook.
 jupyter nbconvert --to notebook --execute --inplace notebooks/05_segments.ipynb
 ```
 
-**Main findings:** Makati has the highest per-capita volume; Pasay has the
-highest sexual share; Muntinlupa and Taguig have the highest platonic shares.
-Under-30 posters lean platonic, while 35+ leans sexual. Late-night share is stable
-at about 26-28%.
+**Main findings:** Makati has the highest per-capita volume and the highest
+platonic and sexual posts per 100,000. Pasay has the most sexual-skewed mix;
+Muntinlupa and Taguig have the highest platonic shares. Under-30 posters lean
+platonic, while 35+ leans sexual. Late-night share is stable at about 26-28%.
+
+The notebook also compares city-tagged and untagged posts. Untagged posts are
+more late-night and more platonic, so the city results are a city-only view, not
+a description of all posts.
 
 ## Setup Instructions
 To set up the data ingestion environment:
