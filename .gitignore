@@ -8,6 +8,7 @@ data/raw/*.jsonl
 data/raw/*.json
 data/processed/posts_clean.csv
 data/processed/posts_clean_full.csv
+output/tables/*.csv
 
 reference-docs/
 AGENTS.md
